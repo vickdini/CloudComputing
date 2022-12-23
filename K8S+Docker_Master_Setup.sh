@@ -1,22 +1,17 @@
 #!/bin/bash
-################################################################################
-# This is a script to automate the installation of Kubernetes and Docker
-# Use a t2.medium EC2 instance on AWS with Ubuntu Server (tested on 22.04.1 LTS)
-#
-# Sources: Kubernetes documentation and https://github.com/Mirantis/cri-dockerd
-# Copyright: (c) 2022 by Vick Dini
-# License: GPL 3.0
-################################################################################
-
+# Use a t2.medium EC2 instance on AWS
 apt update
 apt install -y ca-certificates curl apt-transport-https docker.io golang-go
 systemctl start docker
 systemctl enable docker
+
+# Install Kubernetes
 curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 apt update
 apt install -y kubelet kubeadm kubectl kubernetes-cni
 
+# Set up the network
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
 br_netfilter
@@ -33,6 +28,7 @@ EOF
 
 sysctl --system
 
+# Set up the Docker container runtime interface (CRI)
 git clone https://github.com/Mirantis/cri-dockerd.git
 cd cri-dockerd
 VERSION=$((git describe --abbrev=0 --tags | sed -e 's/v//') || echo $(cat VERSION)-$(git log -1 --pretty='%h')) PRERELEASE=$(grep -q dev <<< "${VERSION}" && echo "pre" || echo "") REVISION=$(git log -1 --pretty='%h')
@@ -45,4 +41,5 @@ systemctl daemon-reload
 systemctl enable cri-docker.service
 systemctl enable --now cri-docker.socket
 
+# Start the Kubernetes master node
 kubeadm init --cri-socket=unix:///var/run/cri-dockerd.sock
