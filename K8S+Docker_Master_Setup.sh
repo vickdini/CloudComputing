@@ -1,5 +1,13 @@
 #!/bin/bash
-# Use a t2.medium EC2 instance on AWS
+################################################################################
+# This is a script to automate the installation of Kubernetes and Docker
+# Use a t2.medium EC2 instance on AWS with Ubuntu Server (tested on 22.04.1 LTS)
+#
+# Sources: Kubernetes documentation and https://github.com/Mirantis/cri-dockerd
+# Copyright: (c) 2022 by Vick Dini
+# License: GPL 3.0
+################################################################################
+
 apt update
 apt install -y ca-certificates curl apt-transport-https docker.io golang-go
 systemctl start docker
