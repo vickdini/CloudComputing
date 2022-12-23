@@ -41,4 +41,4 @@ systemctl daemon-reload
 systemctl enable cri-docker.service
 systemctl enable --now cri-docker.socket
 
-echo "Next step: connect to the Kubernetes master node (kubeadm join ...)"
+echo "Next step: connect to the Kubernetes master node (kubeadm join ... --cri-socket=unix:///var/run/cri-dockerd.sock ...)"
