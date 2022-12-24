@@ -10,6 +10,7 @@ curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cl
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 apt update
 apt install -y kubelet kubeadm kubectl kubernetes-cni
+apt-mark hold kubelet kubeadm kubectl kubernetes-cni
 
 # Set up the network
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
@@ -43,3 +44,9 @@ systemctl enable --now cri-docker.socket
 
 # Start the Kubernetes master node
 kubeadm init --cri-socket=unix:///var/run/cri-dockerd.sock
+
+mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
+
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
