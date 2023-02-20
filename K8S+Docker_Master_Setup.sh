@@ -2,6 +2,12 @@
 # Use a t2.medium EC2 instance on AWS
 apt update
 apt install -y ca-certificates curl apt-transport-https docker.io golang-go
+
+# Disable swap
+swapoff -a
+sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+
+# Start Docker
 systemctl start docker
 systemctl enable docker
 
