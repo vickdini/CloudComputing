@@ -7,6 +7,7 @@ apt install -y ca-certificates curl apt-transport-https docker.io golang-go
 swapoff -a
 sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 
+# Start Docker
 systemctl start docker
 systemctl enable docker
 
