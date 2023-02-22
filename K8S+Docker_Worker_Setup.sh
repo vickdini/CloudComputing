@@ -35,6 +35,13 @@ EOF
 
 sysctl --system
 
+cat <<EOF | sudo tee /run/flannel/subnet.env
+FLANNEL_NETWORK=10.244.0.0/16
+FLANNEL_SUBNET=10.244.0.1/24
+FLANNEL_MTU=1450
+FLANNEL_IPMASQ=true
+EOF
+
 # Set up the Docker container runtime interface (CRI)
 git clone https://github.com/Mirantis/cri-dockerd.git
 cd cri-dockerd
