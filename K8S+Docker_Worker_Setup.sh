@@ -48,6 +48,8 @@ systemctl daemon-reload
 systemctl enable cri-docker.service
 systemctl enable --now cri-docker.socket
 
+mkdir /run/flannel
+
 cat <<EOF | sudo tee /run/flannel/subnet.env
 FLANNEL_NETWORK=10.244.0.0/16
 FLANNEL_SUBNET=10.244.0.1/24
