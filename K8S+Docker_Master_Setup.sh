@@ -49,7 +49,7 @@ systemctl enable cri-docker.service
 systemctl enable --now cri-docker.socket
 
 # Start the Kubernetes master node
-kubeadm init --cri-socket=unix:///var/run/cri-dockerd.sock
+kubeadm init --cri-socket=unix:///var/run/cri-dockerd.sock --pod-network-cidr=10.244.0.0/16
 
 mkdir -p $HOME/.kube
 cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
