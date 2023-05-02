@@ -15,3 +15,6 @@ apt install -y jenkins
 
 # Get password for the Jenkins website
 cat /var/lib/jenkins/secrets/initialAdminPassword
+
+# Get the server's IP address
+ ip a | grep inet
