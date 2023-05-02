@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Run the Kubernetes installer for the master node
+wget "https://raw.githubusercontent.com/vickdini/CloudComputing/main/K8S+Docker_Master_Setup.sh"
+chmod +x "K8S+Docker_Master_Setup.sh"
 ./K8S+Docker_Master_Setup.sh
 
 # Install Rancher
