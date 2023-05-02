@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Run the Kubernetes installer for the master node
+./K8S+Docker_Master_Setup.sh
+
+# Install Rancher
+sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 --privileged rancher/rancher
+
+ip a
+echo "Open the browser to the IP address (port 80)"
+echo "Enter the password that you get by replacing the docker container ID in this command:"
+echo "docker logs containerID  2>&1 | grep "Bootstrap Password:""
