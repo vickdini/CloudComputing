@@ -8,25 +8,12 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] 
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
-# Install Kubernetes
-sudo apt-get update && sudo apt-get install -y apt-transport-https gnupg2 curl
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-sudo apt-get update
-sudo apt-get install -y kubectl kubelet kubeadm
-
-# Initialize Kubernetes
-sudo kubeadm init --pod-network-cidr=10.244.0.0/16
-
-# Set up kubectl for non-root user
-mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
 # Install Rancher
 sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 --privileged rancher/rancher
 
 ip a
+echo ""
 echo "Open the browser to the IP address (port 80)"
 echo "Enter the password that you get by replacing the docker container ID in this command:"
 echo "docker logs containerID  2>&1 | grep "Bootstrap Password:""
+echo ""
