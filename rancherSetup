@@ -15,5 +15,5 @@ ip a
 echo ""
 echo "Open the browser to the IP address (port 80)"
 echo "Enter the password that you get by replacing the docker container ID in this command:"
-echo "docker logs containerID  2>&1 | grep "Bootstrap Password:""
+echo "docker logs containerID  2>&1 | grep 'Bootstrap Password:'"
 echo ""
