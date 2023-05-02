@@ -11,4 +11,7 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 # Install Rancher
 sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 --privileged rancher/rancher
 
-echo "Rancher is now installed and running on your Ubuntu machine."
+ip a
+echo "Open the browser to the IP address (port 80)"
+echo "Enter the password that you get by replacing the docker container ID in this command:"
+echo "docker logs containerID  2>&1 | grep "Bootstrap Password:""
