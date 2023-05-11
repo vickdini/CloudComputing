@@ -16,7 +16,7 @@ cd awx-22.2.0
 
 git init
 
-make docker-compose-build
+sudo make docker-compose-build
 
 make docker-compose
 
