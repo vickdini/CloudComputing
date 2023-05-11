@@ -5,7 +5,7 @@ sudo apt update
 
 # Run the VM with the host processor
 
-apt install -y docker.io docker-compose ansible nodejs npm unzip python3-pip git pwgen
+sudo apt install -y docker.io docker-compose ansible nodejs npm unzip python3-pip git pwgen
 pip3 install awxkit setuptools-scm
 
 wget https://github.com/ansible/awx/archive/refs/tags/22.2.0.zip
