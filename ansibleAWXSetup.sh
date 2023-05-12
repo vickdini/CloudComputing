@@ -12,6 +12,10 @@ wget https://github.com/ansible/awx/archive/refs/tags/22.2.0.zip
 unzip 22.2.0.zip
 cd awx-22.2.0
 
+# Fix the Makefile
+sed '/^nginx:/a \ \ \ \ \ \ \ \ useradd -g nginx nginx' Makefile | tee Makefile2
+mv Makefile2 Makefile
+
 ##Values are written out to tools/docker-compose/_sources/secrets/
 
 git init
