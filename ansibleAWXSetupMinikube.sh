@@ -9,4 +9,4 @@ sudo dpkg -i minikube_latest_amd64.deb
 
 minikube config set driver docker
 minikube delete
-minikube start
+minikube start --force
