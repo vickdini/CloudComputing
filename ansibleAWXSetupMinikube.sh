@@ -30,6 +30,7 @@ namespace: awx
 EOF
 
 minikube kubectl -- apply -k .
+rm -rf /tmp/juju-mk*
 minikube kubectl -- config set-context --current --namespace=awx
 
 cat <<EOF | sudo tee awx-demo.yaml
