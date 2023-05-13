@@ -38,10 +38,7 @@ namespace: awx
 EOF
 
 kubectl apply -k .
-#minikube kubectl -- apply -k .
-#rm -rf /tmp/juju-mk*
 kubectl config set-context --current --namespace=awx
-#minikube kubectl -- config set-context --current --namespace=awx
 
 # Install demo
 cat <<EOF | sudo tee awx-demo.yaml
@@ -70,6 +67,4 @@ images:
 namespace: awx
 EOF
 
-#rm -rf /tmp/juju-mk*
 kubectl apply -k .
-#minikube kubectl -- apply -k .
