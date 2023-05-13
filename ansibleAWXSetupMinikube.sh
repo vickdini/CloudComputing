@@ -30,6 +30,4 @@ images:
 namespace: awx
 EOF
 
-alias kubectl="minikube kubectl --"
-
-kubectl apply -k .
+minikube kubectl -- apply -k .
