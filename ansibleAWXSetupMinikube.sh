@@ -30,6 +30,7 @@ namespace: awx
 EOF
 
 minikube kubectl -- apply -k .
+minikube kubectl -- config set-context --current --namespace=awx
 
 cat <<EOF | sudo tee awx-demo.yaml
 apiVersion: awx.ansible.com/v1beta1
@@ -57,4 +58,5 @@ images:
 namespace: awx
 EOF
 
+rm -rf /tmp/juju-mk*
 minikube kubectl -- apply -k .
