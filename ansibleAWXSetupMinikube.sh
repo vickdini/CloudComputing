@@ -35,6 +35,9 @@ images:
 
 # Specify a custom namespace in which to install AWX
 namespace: awx
+
+spec:
+  service_type: nodeport
 EOF
 
 kubectl apply -k .
@@ -65,6 +68,9 @@ images:
 
 # Specify a custom namespace in which to install AWX
 namespace: awx
+
+spec:
+  service_type: nodeport
 EOF
 
 kubectl apply -k .
