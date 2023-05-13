@@ -13,6 +13,14 @@ minikube config set driver docker
 minikube delete
 minikube start --force
 
+# Install Kubectl
+sudo apt install -y ca-certificates curl
+sudo curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt update
+sudo apt install -y kubectl
+
+# Install AWX Operator
 cat <<EOF | sudo tee kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
@@ -29,10 +37,13 @@ images:
 namespace: awx
 EOF
 
-minikube kubectl -- apply -k .
-rm -rf /tmp/juju-mk*
-minikube kubectl -- config set-context --current --namespace=awx
+kubectl apply -k .
+#minikube kubectl -- apply -k .
+#rm -rf /tmp/juju-mk*
+kubectl config set-context --current --namespace=awx
+#minikube kubectl -- config set-context --current --namespace=awx
 
+# Install demo
 cat <<EOF | sudo tee awx-demo.yaml
 apiVersion: awx.ansible.com/v1beta1
 kind: AWX
@@ -59,5 +70,6 @@ images:
 namespace: awx
 EOF
 
-rm -rf /tmp/juju-mk*
-minikube kubectl -- apply -k .
+#rm -rf /tmp/juju-mk*
+kubectl apply -k .
+#minikube kubectl -- apply -k .
