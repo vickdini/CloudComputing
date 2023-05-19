@@ -68,3 +68,6 @@ namespace: awx
 EOF
 
 kubectl apply -k .
+
+echo "Wait 5 minutes and run kubectl get pods to see if all pods were created"
+echo "Then run kubectl get svc to get the service information"
