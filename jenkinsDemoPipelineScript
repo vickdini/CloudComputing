@@ -1,0 +1,23 @@
+pipeline {
+    agent none
+
+    stages {
+        stage('Build') {
+            agent { node { label 'javaCompiler' } }
+            steps {
+                echo 'Building...'
+                git branch: 'main', url: 'https://github.com/spring-projects/spring-petclinic.git'
+                sh './mvnw package'
+                stash includes: 'target/*.jar', name: 'app'
+            }
+        }
+        stage('Deploy') {
+            agent { node { label 'server' } }
+            steps {
+                echo 'Running the app'
+                unstash 'app'
+                sh 'java -jar target/*.jar'
+            }
+        }
+    }
+}
