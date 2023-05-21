@@ -5,4 +5,3 @@ sudo apt update
 sudo apt install -y openjdk-19-jre-headless ca-certificates curl gnupg lsb-release
 
 sudo adduser --group --home /home/jenkins --shell /bin/bash jenkins
-
