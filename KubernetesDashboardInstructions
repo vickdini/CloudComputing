@@ -1,8 +1,13 @@
-Deploy the Kubernetes Dashboard from the master node:
+# Deploy the Kubernetes Dashboard from the master node:
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
 
-Then run:
+# Create the admin user
+kubectl create serviceaccount dashboard -n default
+kubectl create clusterrolebinding dashboard-admin -n default --clusterrole=cluster-admin --serviceaccount=default:dashboard
+kubectl -n kubernetes-dashboard create token admin-user
+
+# Then run:
 kubectl proxy --address='0.0.0.0' --port=8001 --accept-hosts='.*'
 
-Connect via the master node's VM's public IP address:
+# Connect via the master node's VM's public IP address:
 http://PUBLICIP:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
