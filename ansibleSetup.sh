@@ -11,6 +11,8 @@ sudo pip3 install ansible
 
 # Create user
 useradd ansible
+mkdir /home/ansible
+chown ansible /home/ansible
 echo "ansible:password" | chpasswd
 echo "ansible ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ansible
 ssh-keygen
