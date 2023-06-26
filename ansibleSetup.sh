@@ -20,4 +20,4 @@ su - ansible
 ssh-keygen
 
 # Copy the SSH id to the managed nodes
-# ssh-copy-id -i .ssh/id_rsa user@host
+# ssh-copy-id -i .ssh/id_rsa.pub user@host
