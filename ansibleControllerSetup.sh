@@ -24,5 +24,7 @@ echo 'On the managed nodes run the following:'
 echo 'useradd ansible'
 echo 'mkdir /home/ansible'
 echo 'chown ansible /home/ansible'
-echo 'ssh-copy-id -i .ssh/id_rsa.pub user@host'
 echo 'echo "ansible ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ansible'
+
+echo 'On the controller run the following:'
+echo 'ssh-copy-id -i .ssh/id_rsa.pub user@host'
