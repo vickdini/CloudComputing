@@ -18,3 +18,5 @@ echo "ansible ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ansible
 ssh-keygen
 su - ansible
 ssh-keygen
+
+# ssh-copy-id -i .ssh/id_rsa user@host
