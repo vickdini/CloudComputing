@@ -11,5 +11,5 @@ sudo pip3 install ansible
 
 # Create user
 useradd ansible
-echo password | passwd --stdin ansible
+echo "ansible:password" | chpasswd
 echo "ansible ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ansible
