@@ -1,7 +1,12 @@
 #!/bin/bash
 # Use a t2.medium EC2 instance on AWS
 apt update
-apt install -y ca-certificates curl apt-transport-https docker.io golang-go
+apt install -y ca-certificates curl apt-transport-https docker.io
+
+# Install Go 1.21.5
+wget https://go.dev/dl/go1.21.5.linux-amd64.tar.gz
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.21.5.linux-amd64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
 
 # Disable swap
 swapoff -a
