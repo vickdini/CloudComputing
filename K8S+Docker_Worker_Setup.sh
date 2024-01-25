@@ -10,7 +10,7 @@ export PATH=$PATH:/usr/local/go/bin
 
 # Disable swap
 swapoff -a
-sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+sed -i '/\sswap\s/s/^/#/' /etc/fstab
 
 # Start Docker
 systemctl start docker
