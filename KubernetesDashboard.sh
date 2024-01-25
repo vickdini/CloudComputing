@@ -29,10 +29,10 @@ kubectl apply -f dashboard-adminuser.yaml
 kubectl apply -f dashboard-adminuser-ClusterRoleBinding.yaml
 
 # Get the token for the dashboard
+echo "This is the dashboard token"
 kubectl -n kubernetes-dashboard create token admin-user
 
 # Then run:
 kubectl proxy --address='0.0.0.0' --port=8001 --accept-hosts='.*'
 
-# Connect via the master node's VM's public IP address:
-http://PUBLICIP:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+echo "Connect via the master node's VM's public IP address: http://PUBLICIP:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/"
